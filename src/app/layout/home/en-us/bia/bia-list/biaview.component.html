@@ -1,0 +1,69 @@
+<h1 mat-dialog-title style="color: #00796b;">Business Impact Analysis View</h1>
+<div mat-dialog-content>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">BIA Name</mat-label> 
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.biA_NAME}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">BIA Program Name</mat-label> 
+
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.bcM_Program_Name}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">BIA Project Name</mat-label> 
+
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.bcM_Project_Name}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">BIA Process Name</mat-label> 
+
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.bcM_Process_Name}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">BIA Status</mat-label> 
+
+                </div>
+                <div class="col-md-6">
+                    <span class="label2"> {{viewData.status_Name}}</span>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div mat-dialog-actions class="text-right">
+  <button mat-raised-button color="primary" class="m-1 text-right" (click)="close()"  cdkFocusInitial>Close</button>
+</div>

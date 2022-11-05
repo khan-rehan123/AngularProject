@@ -1,0 +1,71 @@
+<h1 mat-dialog-title><span *ngIf="userid==0">Add</span><span *ngIf="userid>0">Edit</span> user</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addUserForm" class="user-form">
+
+        <div>
+
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>person</mat-icon>  
+                </mat-placeholder>
+                <mat-select placeholder="Select Role" formControlName="Role">
+                <mat-option *ngFor="let st of RoleArray" [value]="st.id">
+                    {{st.name}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>person</mat-icon> First Name
+                </mat-placeholder>
+                <input matInput formControlName="firstName" required>
+                <mat-error *ngIf="addUserForm.controls.firstName.errors?.required">firstName is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>person</mat-icon> Last Name
+                </mat-placeholder>
+                <input matInput formControlName="lastName" required>
+                <mat-error *ngIf="addUserForm.controls.lastName.errors?.required">lastName is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>person</mat-icon> Email
+                </mat-placeholder>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="addUserForm.controls.email.errors?.required">email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>vpn_key</mat-icon> Password
+                </mat-placeholder>
+                <input matInput formControlName="password" required [type]="passwordHide ? 'password' : 'text'"
+                    autocomplete="false">
+                <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility' :
+                    'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="addUserForm.controls.password.errors?.required">Password is required</mat-error>
+                <mat-error *ngIf="addUserForm.controls.password.hasError('minlength')">Password isn't long enough,
+                    minimum of 6 characters</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-placeholder>
+                    <mat-icon>person</mat-icon> Phone Number
+                </mat-placeholder>
+                <input matInput formControlName="phone" required>
+                <mat-error *ngIf="addUserForm.controls.phone.errors?.required">phone is required</mat-error>
+            </mat-form-field>
+            <mat-slide-toggle formControlName="active">Active!</mat-slide-toggle>
+            <mat-error *ngIf="addUserForm.controls.active.errors?.required">*</mat-error>
+        </div>
+
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" (click)="addUpdate()" [disabled]="!addUserForm.valid">
+        <mat-spinner *ngIf="isLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+            class="mat-spinner-color"></mat-spinner>
+        <span *ngIf="userid ==0 && !isLoading">Save</span><span *ngIf="userid>0  && !isLoading">Update</span>
+    </button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

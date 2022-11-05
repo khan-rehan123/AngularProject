@@ -1,0 +1,84 @@
+<!-- [title]="'BCM Program List'"  -->
+ 
+<app-content-header
+icon="computer" 
+[desc]="'BCDR programs List'"
+[hideBreadcrumb]="true"
+[hasBgImage]="true" 
+[class]="'py-3'"></app-content-header>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button routerLink="/en-us/bcdrplanning/add">
+            <mat-icon>person_add</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<div class="mat-elevation-z8">
+    <table style="background-color: aliceblue;" mat-table [dataSource]="dataSource"  matSort >
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="plan_Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.plan_Name}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="last_Test_Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Test Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.last_Test_Date | date}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="planCategory_Id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sr No.</th>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.bcM_Program_ID}} </td> -->
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="scope">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Scoping </th>
+        <td mat-cell *matCellDef="let element"> {{element.scope}} </td>
+      </ng-container>
+      <ng-container matColumnDef="approval_Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Aprroval Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.approval_Date | date}} </td>
+      </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="focal_Point">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Focal Point </th>
+    <td mat-cell *matCellDef="let element"> {{element.focal_Point}} </td>
+  </ng-container>
+      
+      <ng-container matColumnDef="due_Date">
+        <th mat-header-cell *matHeaderCellDef> DUE Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.due_Date | date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button routerLink="/en-us/bcdrplanning/update/{{element.plan_ID}}" color="primary" class="m-1"><mat-icon class="">edit</mat-icon></button>
+         </td>
+      </ng-container>
+      <ng-container matColumnDef="View">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button routerLink="/en-us/bcdrplanning/view/{{element.plan_ID}}" color="accent" class="m-1"><mat-icon class="">visibility</mat-icon></button>
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="warn" class="m-1" (click)="deleteBCMProgram(element.plan_ID)"><mat-icon class="">delete</mat-icon></button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

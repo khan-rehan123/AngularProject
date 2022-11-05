@@ -1,0 +1,82 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center" [formGroup]="addBCMProject">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="Select Program" formControlName="bcmProgramm" name="food">
+                            <mat-option *ngFor="let st of dataArray" [value]="st.bcM_Program_ID">
+                                {{st.bcM_Program_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="BCMProjectName" placeholder="BCM Project Name" value="">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Project Status" formControlName="BCMProjectStatus" name="food">
+                            <mat-option *ngFor="let st of status" [value]="st.id">
+                                {{st.status_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Project Co-ordinator" formControlName="BCMProgramCordinator" name="food">
+                            <mat-option *ngFor="let us of users" [value]="us.user_ID">
+                                {{us.user_First_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Project Owner" formControlName="BCMProjectOwner" name="Owner">
+                            <mat-option *ngFor="let st of users" [value]="st.user_ID">
+                                {{st.user_First_Name}}
+                            </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Region/ Location" formControlName="BCMProjectLocation">
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-form-field class="w-100">
+                <textarea matInput placeholder="Description" formControlName="BCMProjectDesc"></textarea>
+            </mat-form-field>
+            <mat-card-header fxLayoutAlign="center">
+                <button mat-raised-button color="primary" class="m-1" (click)="addUpdate()">
+                    <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                        class="mat-spinner-color"></mat-spinner>
+                    <span *ngIf="!submitted"> {{buttonTitle}}</span>
+                </button>
+ 
+                <div class="col-md-6">
+                    <button mat-raised-button routerLink="/en-us/bcmprogram/projectlist" color="accent" class="m-1">
+                       Go to List
+                    </button>
+                </div>
+    
+            </mat-card-header>
+        </form>
+
+    </mat-card-content>
+</mat-card>

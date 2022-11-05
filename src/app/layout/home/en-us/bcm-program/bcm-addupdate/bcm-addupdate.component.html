@@ -1,0 +1,122 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center" [formGroup]="addBCMProgram">
+            <mat-form-field>
+                <input matInput formControlName="BCMProgramName" placeholder="BCM Program Name" value="">
+            </mat-form-field>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Status" formControlName="BCMStatus" name="food">
+                            <mat-option *ngFor="let st of status" [value]="st.id">
+                                {{st.status_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Program Manager" formControlName="BCMProgramManager"
+                            name="manager">
+                            <mat-option *ngFor="let st of users" [value]="st.user_ID">
+                                {{st.user_First_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Program Owner" formControlName="BCMProgramOwner" name="Owner">
+                            <mat-option *ngFor="let st of users" [value]="st.user_ID">
+                                {{st.user_First_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Location/Region" formControlName="BCMLocation">
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-form-field class="w-100">
+                <textarea matInput placeholder="Description" formControlName="BCMProgramDesc"></textarea>
+            </mat-form-field>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="StartDate" [matDatepicker]="picker1" placeholder="Start Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input formControlName="CompletionDate" matInput [matDatepicker]="picker2"
+                            placeholder="Actual Complition Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input formControlName="LastReviewDate" matInput [matDatepicker]="pickerq3"
+                            placeholder="Last Review Date">
+                        <mat-datepicker-toggle matSuffix [for]="pickerq3"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerq3></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input formControlName="NextReviewDueDate" matInput [matDatepicker]="picker3"
+                            placeholder="Next ReviewDue Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="ReviewPeriodDays" placeholder="Review Period Days">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input formControlName="ReviewPeriodDuesDays" matInput [matDatepicker]="picker4"
+                            placeholder="Reviews Peroid Due Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-card-header fxLayoutAlign="center">
+                <button mat-raised-button color="primary" class="m-1" (click)="addUpdate()">
+                    <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                        class="mat-spinner-color"></mat-spinner>
+                    <span *ngIf="!submitted"> {{buttonTitle}}</span>
+                </button>
+             
+
+                <div class="col-md-6">
+                    <button mat-raised-button routerLink="/en-us/bcmprogram/programlist" color="accent" class="m-1">
+                       Go to List
+                    </button>
+                </div>
+            </mat-card-header>
+        </form>
+
+
+
+
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,85 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center">
+            <div class="row">
+                <div class="col-md-6">
+                    <b>BCM Program Name:</b>{{bcM_Program_Name}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    BCM Status:{{bcM_Program_Owner}}
+                </div>
+                <div class="col-md-6">
+                    BCM Program Manager:{{bcM_Program_Manager}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    BCM Program Owner:{{bcM_Program_Owner }}
+                </div>
+                <div class="col-md-6">
+                    Location/Region:{{bcM_Program_Region}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Description :{{bcM_Program_Description}}
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    Start Date:{{bcM_Program_StartDate}}
+                </div>
+                <div class="col-md-6">
+                    Actual Complition Date: {{last_Review_Date}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    Last Review Date: {{last_Review_Date }}
+                </div>
+                <div class="col-md-6">
+                    Next ReviewDue Date:{{last_Review_Date }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    Review Period Days:{{review_Period_Days }}
+                </div>
+                <!-- <div class="col-md-6">
+                    Reviews Peroid Due Date:
+                </div> -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="ReviewPeriodDays" placeholder="Remarks">
+                    </mat-form-field>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button mat-raised-button  color="primary" class="m-1">
+                         Approve
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-raised-button routerLink="/en-us/bcmprogram/programlist" color="primary" class="m-1">
+                       Go to List
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,44 @@
+<h1 mat-dialog-title style="color: #00796b;">Business Contiuity Stratigies</h1>
+<div mat-dialog-content>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">Status</mat-label> 
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.status_Name}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">Statement</mat-label> 
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.strategy_Statement}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-label class="label">Description</mat-label> 
+
+                </div>
+                <div class="col-md-6">
+                    <span class="label2">{{viewData.strategyDescription}}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="text-right">
+  <button mat-raised-button color="primary" class="m-1 text-right" (click)="close()"  cdkFocusInitial>Close</button>
+</div>

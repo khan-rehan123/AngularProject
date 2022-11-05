@@ -1,0 +1,79 @@
+<app-content-header icon="dashboard" desc="View information about the users, search, add, edit or delete any user."
+    [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'py-3'"></app-content-header>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button (click)="openUserDialog(null)">
+            <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="showSearch = !showSearch" class="mx-2">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <form class="user-search" [class.show]="showSearch">
+        <mat-form-field class="user-search-input">
+            <input matInput placeholder="Search user by name..." [(ngModel)]="searchText" name="search">
+        </mat-form-field>
+    </form>
+</mat-toolbar>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="org_Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.org_Name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="website">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Website </th>
+        <td mat-cell *matCellDef="let element"> {{element.website}} </td>
+      </ng-container>
+      <ng-container matColumnDef="contact_Email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Contact Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.contact_Email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="contact_Phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Contact Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.contact_Phone}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="org_ID">
+        <th mat-header-cell *matHeaderCellDef> Serial No. </th>
+        <td mat-cell  *matCellDef="let element; let i = index;">{{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}</td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="created_By">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Created By</th>
+        <td mat-cell *matCellDef="let element"> {{element.created_By}} </td>
+      </ng-container>
+      <ng-container matColumnDef="created_Date">
+        <th mat-header-cell *matHeaderCellDef> Created Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.created_Date | date}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element"><button mat-raised-button  color="primary" class="m-1" (click)="openUserDialog(element)"><mat-icon class="">edit</mat-icon></button>  </td>
+      </ng-container>
+      <ng-container matColumnDef="View">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <!-- <button mat-raised-button  color="accent" routerLink="/en-us/organization/view/{{element.org_ID}}" class="btnEdit buttonView"><mat-icon class="">visibility</mat-icon></button> -->
+          </td>
+     
+    </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"><button mat-raised-button  color="warn" class="btnEdit buttonView" (click)="deleteUser(element)"><mat-icon class="">delete</mat-icon></button>  </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[10, 20,50,100]" #paginatorRef
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

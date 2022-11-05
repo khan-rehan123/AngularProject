@@ -1,0 +1,131 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+    <mat-card-title> {{title }}</mat-card-title>
+
+    <form [formGroup]="addIncidentManagement">
+    
+        <div class="row">
+        
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="title" placeholder=" Incident title" value="">
+            </mat-form-field>
+             </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="description" placeholder="Incident description" value="">
+            </mat-form-field>
+            </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <mat-label>Leave a comment</mat-label>
+                <textarea  matInput formControlName="notes"  placeholder="Notes"></textarea>
+              </mat-form-field>
+        </div>
+        </div>
+        
+        <div class="row">
+        
+       
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <mat-select placeholder="Incident status" formControlName="status" name="food">
+                    <mat-option value="1"> Open</mat-option>
+                 <mat-option value="2"> In-progress</mat-option>
+                 <mat-option value="3">  Closed</mat-option>
+                 <mat-option value="4"> Cancelled</mat-option>
+                 <mat-option value="5"> Completed</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="startdate" [matDatepicker]="picker1"
+                    placeholder="Start Date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+              </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="enddate" [matDatepicker]="picker2"
+                    placeholder="Close Date">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+        <div class="row">
+        
+        
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="duration" placeholder=" Incident duration" value="">
+            </mat-form-field>
+           </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <mat-select placeholder="Incident category" formControlName="category" name="food">
+                    <mat-option value="1"> Fire</mat-option>
+                 <mat-option value="2"> Cyberattack</mat-option>
+                 <mat-option value="3">  Infrastructure failure</mat-option>
+                 <mat-option value="4"> Datacenter loss</mat-option>
+                </mat-select>
+            </mat-form-field>
+         </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <mat-select placeholder="Incident Priority" formControlName="priority" name="food">
+                    <mat-option value="1"> Critical</mat-option>
+                 <mat-option value="2"> High</mat-option>
+                 <mat-option value="3">  Medium</mat-option>
+                 <mat-option value="4"> Low</mat-option>
+                </mat-select>
+            </mat-form-field>
+         </div>
+        </div>
+        
+        
+        
+        <div class="row">
+        
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="source" placeholder=" Incident source" value="">
+            </mat-form-field>
+              </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <input matInput formControlName="location" placeholder="Incident location" value="">
+            </mat-form-field>
+            </div>
+         <div class="col-lg-4">
+            <mat-form-field class="w-100">
+                <mat-select placeholder="Incident Priority" formControlName="owner" name="food">
+                    <mat-option value="1"> User1</mat-option>
+                    <mat-option value="2"> User2</mat-option>
+                    <mat-option value="3"> User3</mat-option>
+                    <mat-option value="4"> User4</mat-option>
+                    <mat-option value="5"> User5</mat-option>
+                </mat-select>
+            </mat-form-field>
+         </div>
+        </div>
+        
+     
+        
+        
+          
+        <mat-card-header fxLayoutAlign="center">
+            <button mat-raised-button color="primary" class="m-1" (click)="addUpdate()">
+                <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                    class="mat-spinner-color"></mat-spinner>
+                <span *ngIf="!submitted"> {{buttonTitle}}</span>
+            </button>
+            <button mat-raised-button color="accent" class="m-1">Cancel</button>
+
+        </mat-card-header>
+        </form>
+        
+</mat-card>

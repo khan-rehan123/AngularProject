@@ -1,0 +1,309 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+
+    <mat-card-content>
+
+        <mat-tab-group #tabgroup>
+            <mat-tab label="Contacts & all Tree ">
+                <form fxLayout="column" fxLayoutAlign="center" [formGroup]="contractAndTree">
+
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="Name" formControlName="name"
+                            name="Owner">
+                            <mat-option [value]="1"> user1 </mat-option>
+                            <mat-option [value]="2"> user2 </mat-option>
+
+                            <mat-option [value]="3"> user3 </mat-option>
+
+                            <mat-option [value]="4"> user4 </mat-option>
+
+                            <mat-option [value]="5"> user5 </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="jobTitle" placeholder="Job title / Position" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6" >
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="phoneDirect" placeholder="Phone (direct)" value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="phoneMobile" placeholder="Phone (mobile)" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="Email" formControlName="email">
+                            </mat-form-field> 
+                        </div>
+                    </div>
+                    <h5 class="my-5">Call Tree(s)</h5>
+                    <mat-form-field class="w-100">
+                        <textarea matInput placeholder=" Notification title" formControlName="notficationTitle"></textarea>
+                    </mat-form-field>
+
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="purpose" 
+                                    placeholder="Purpose">
+                           
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder=" Call Initiator" formControlName="callInitiator"
+                                    name="callInitiator">
+                                    <mat-option [value]="1"> user1 </mat-option>
+                                    <mat-option [value]="2"> user2 </mat-option>
+        
+                                    <mat-option [value]="3"> user3 </mat-option>
+        
+                                    <mat-option [value]="4"> user4 </mat-option>
+        
+                                    <mat-option [value]="5"> user5 </mat-option>
+        
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder=" Call recipients" formControlName="callReciepent"
+                                    name="callInitiator">
+                                    <mat-option [value]="1"> user1 </mat-option>
+                                    <mat-option [value]="2"> user2 </mat-option>
+        
+                                    <mat-option [value]="3"> user3 </mat-option>
+        
+                                    <mat-option [value]="4"> user4 </mat-option>
+        
+                                    <mat-option [value]="5"> user5 </mat-option>
+        
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input formControlName="lastExecuted" matInput 
+                                    placeholder="Last executed">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-card-header fxLayoutAlign="center">
+                        <button mat-raised-button color="primary" class="m-1" (click)="submitContract(tabgroup,2)">
+                            <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                                class="mat-spinner-color"></mat-spinner>
+                            <span *ngIf="!submitted"> Go to Requirement</span>
+                        </button>
+                        <button mat-raised-button color="accent" class="m-1">Cancel</button>
+
+                    </mat-card-header>
+                </form>
+            </mat-tab>
+
+            <mat-tab label="Requirements">
+                <form fxLayout="column" fxLayoutAlign="center" [formGroup]="requirementForm">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="Process name" formControlName="processName"
+                            name="Owner">
+                            <mat-option [value]="1"> user1 </mat-option>
+                            <mat-option [value]="2"> user2 </mat-option>
+
+                            <mat-option [value]="3"> user3 </mat-option>
+
+                            <mat-option [value]="4"> user4 </mat-option>
+
+                            <mat-option [value]="5"> user5 </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="processManager" placeholder="Process manager" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="RTO" placeholder="Recovery Time Objective (RTO)" value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="RPO" placeholder="Recovery Point Objective (RPO)" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                         
+                        </div>
+                    </div>
+                    <h5 class="mt-3 mb-4">Requirements</h5>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="reqName" placeholder="Requirement name" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="reqType" placeholder="Requirement type" value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="reqDesc" placeholder="Description" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                         
+                        </div>
+                    </div>
+                
+
+                    <mat-card-header fxLayoutAlign="center">
+                        <button mat-raised-button color="primary" class="m-1" (click)="submitReq(tabgroup,4)">
+                            <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                                class="mat-spinner-color"></mat-spinner>
+                            <span *ngIf="!submitted"> Go to Process</span>
+                        </button>
+                        <button mat-raised-button color="accent" class="m-1">Cancel</button>
+
+                    </mat-card-header>
+                </form>
+            </mat-tab>
+            <mat-tab label="Process">
+                <form fxLayout="column" fxLayoutAlign="center" [formGroup]="planTestingForm">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-12"><label>
+                            Test cycle :
+                        </label>
+
+                            <mat-radio-group  formControlName="testCycle" aria-label="Select an option">
+                                <mat-radio-button value="1">Quarterly</mat-radio-button>
+                                <mat-radio-button value="2">Half-yearly</mat-radio-button>
+                                <mat-radio-button value="3">Yearly</mat-radio-button>
+
+                              </mat-radio-group>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder="Last test result" formControlName="lastTestResult" name="food">
+                                <mat-option [value]="0">--Select--</mat-option>
+                                <mat-option [value]="1"> Open</mat-option>
+                                <mat-option [value]="2"> Pass</mat-option>
+                                <mat-option [value]="3"> Fail</mat-option>
+                                </mat-select >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="lastPlanTestDate" [matDatepicker]="picker1"
+                                    placeholder=" Last plan test date">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="nextPlanTestDate" [matDatepicker]="picker2"
+                                    placeholder="Next plan test date">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                     <h5 class="mt-3 mb-4">Test Execution</h5>
+                     <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="testTitle" placeholder="Test title" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="testDesc" placeholder="Test description" value="">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="testComplitionDate" [matDatepicker]="picker3"
+                                    placeholder="Test completion date">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder="Overall status" formControlName="overAllStatus" name="food">
+                                <mat-option [value]="0">--Select--</mat-option>
+                                <mat-option [value]="1"> Approved</mat-option>
+                                <mat-option [value]="2"> Approved</mat-option>
+                                <mat-option [value]="3"> Pending</mat-option>
+                                <mat-option [value]="4"> Rejected</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder="Submitter" formControlName="submitter" name="food">
+                                <mat-option [value]="0">--Select--</mat-option>
+                                <mat-option [value]="1"> User1</mat-option>
+                                <mat-option [value]="2"> User2</mat-option>
+                                <mat-option [value]="3"> User3</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100">
+                                <mat-select placeholder=" Test result" formControlName="testResult" name="food">
+                                    <mat-option [value]="0">--Select--</mat-option>
+                                    <mat-option [value]="1"> Open</mat-option>
+                                    <mat-option [value]="2"> Pass</mat-option>
+                                    <mat-option [value]="3"> Fail</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-card-header fxLayoutAlign="center">
+                        <button mat-raised-button color="primary" class="m-1" (click)="finalSubmit()">
+                            <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                                class="mat-spinner-color"></mat-spinner>
+                            <span *ngIf="!submitted">Final Submission</span>
+                        </button>
+                        <button mat-raised-button color="accent" class="m-1">Cancel</button>
+
+                    </mat-card-header>
+                </form>
+             </mat-tab>
+        </mat-tab-group>
+
+
+    </mat-card-content>
+</mat-card>

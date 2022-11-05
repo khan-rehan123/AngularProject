@@ -1,0 +1,17 @@
+@import "../../../../../theme/styles/variables";
+
+ 
+.common-table-style tr th{
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+
+}
+.common-table-style tr td{
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+
+}
+.common-table-style tr td:first-child{
+    text-align: center;
+
+}

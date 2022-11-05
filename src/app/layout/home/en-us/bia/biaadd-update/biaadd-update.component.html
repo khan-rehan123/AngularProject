@@ -1,0 +1,219 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="false" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+<mat-card>
+
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center" [formGroup]="addBCMProgram">
+            <mat-form-field>
+                <input matInput formControlName="BIAName" placeholder="BIA Program Name" value="">
+            </mat-form-field>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Program" formControlName="BCMProgram" name="food"
+                            (selectionChange)="BindBCMProject($event)">
+                            <mat-option *ngFor="let stt of dataArray" [value]="stt.bcM_Program_ID">
+                                {{stt.bcM_Program_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Project" formControlName="BCMProject" name="food"
+                            (selectionChange)="BindBCMProcess($event)">
+                            <mat-option *ngFor="let st of projectList" [value]="st.id">
+                                {{st.bcM_Project_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Process" formControlName="BCMProcess" name="food"
+                            (selectionChange)="BindBCMApplication($event)">
+                            <mat-option *ngFor="let st of processList" [value]="st.id">
+                                {{st.bcM_Process_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6" hidden>
+                </div>
+            </div>
+
+            <table id="customers">
+                <tr>
+                    <th colspan="1">
+                        Impact Over Time
+                    </th>
+                    <th *ngFor="let a of impactParamterHeader">
+                        {{a}}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Impact Parameters
+                    </th>
+                    <th colspan="5"></th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ImpactParamters.length >0 ? ImpactParamters[0].status_Name :''}}
+                    </td>
+                    <td *ngFor="let a of financialImpactArry;let i = index">
+                        <mat-form-field>
+                            <mat-select  formControlName="{{a.name}}" [disabled]="a.desable"
+                                (selectionChange)="changeFianancial($event,i,this.financialImpactArry);changeImapct(a,$event);">
+                                <mat-option *ngFor="let cri of criticalList" [value]="cri.id">
+                                    {{cri.status_Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ImpactParamters.length >0 ? ImpactParamters[1].status_Name :''}}
+                    </td>
+                    <td *ngFor="let a of stratigicImpactArry;let i = index">
+                        <mat-form-field>
+                            <mat-select  formControlName="{{a.name}}" [disabled]="a.desable"
+                                (selectionChange)="changeFianancial($event,i,this.stratigicImpactArry);changeImapct(a,$event);">
+                                <mat-option *ngFor="let cri of criticalList" [value]="cri.id">
+                                    {{cri.status_Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ImpactParamters.length >0 ? ImpactParamters[2].status_Name :''}}
+                    </td>
+                    <td *ngFor="let a of operationalImpactArry;let i = index">
+                        <mat-form-field>
+                            <mat-select  formControlName="{{a.name}}" [disabled]="a.desable"
+                                (selectionChange)="changeFianancial($event,i,this.operationalImpactArry);changeImapct(a,$event);">
+                                <mat-option *ngFor="let cri of criticalList" [value]="cri.id">
+                                    {{cri.status_Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ImpactParamters.length >0 ? ImpactParamters[3].status_Name :''}}
+                    </td>
+                    <td *ngFor="let a of ComplianceImpactArry;let i = index">
+                        <mat-form-field>
+                            <mat-select  formControlName="{{a.name}}" [disabled]="a.desable"
+                                (selectionChange)="changeFianancial($event,i,this.ComplianceImpactArry);changeImapct(a,$event);">
+                                <mat-option *ngFor="let cri of criticalList" [value]="cri.id">
+                                    {{cri.status_Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ImpactParamters.length >0 ? ImpactParamters[4].status_Name :''}}
+                    </td>
+                    <td *ngFor="let a of repImpactArry;let i = index">
+                        <mat-form-field>
+                            <mat-select  formControlName="{{a.name}}" [disabled]="a.desable"
+                                (selectionChange)="changeFianancial($event,i,this.repImpactArry);changeImapct(a,$event);">
+                                <mat-option *ngFor="let cri of criticalList" [value]="cri.id">
+                                    {{cri.status_Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>RTO</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field class="w-100">
+                            <input matInput formControlName="rto" placeholder="BIA RTO" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4>RPO:</h4> The final displayed RPO value will always be the lowest value selected for this particular application either by you or the representative of the other processes.
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="w-100">
+                                    <mat-select placeholder="Operational Crictical Application" (selectionChange)="BindRPOTime($event)"
+                                        formControlName="application">
+                                        <mat-option *ngFor="let para of ApplicationList" [value]="para.id"
+                                            [disabled]="para.desabled">
+                                            {{para.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field class="w-100">
+                                    <mat-select placeholder="RPO Period" formControlName="period">
+                                        <mat-option *ngFor="let a of periodArray" [value]="a.id">
+                                            {{a.status_Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-success spanclass" (click)="addRPO()">
+                                    <span>
+                                        <mat-icon class="mat-icon-xlg">add</mat-icon>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="customers">
+                        <tr>
+                            <th>Application Name</th>
+                            <th>RPO Period</th>
+                            <th>Remove</th>
+                        </tr>
+                        <tr *ngFor="let quantity of rpoArray;let i = index">
+                            <td>{{quantity.appName}}</td>
+                            <td>{{quantity.periodName}}</td>
+                            <td>
+                                <span class="text-danger spanclass" (click)="removeRPO(i)">
+                                    <span>
+                                        <mat-icon class="mat-icon-xlg">remove</mat-icon>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <mat-card-header fxLayoutAlign="center">
+                <button mat-raised-button color="primary" class="m-1" (click)="addUpdate()">
+                    <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                        class="mat-spinner-color"></mat-spinner>
+                    <span *ngIf="!submitted"> {{buttonTitle}}</span>
+                </button>
+                <button mat-raised-button color="accent" routerLink="/en-us/bia/list" class="m-1">Cancel</button>
+
+            </mat-card-header>
+        </form>
+
+    </mat-card-content>
+</mat-card>

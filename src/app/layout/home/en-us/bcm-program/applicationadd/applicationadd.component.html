@@ -1,0 +1,73 @@
+<app-content-header [icon]="icon" [desc]="title" [hideBreadcrumb]="true" [hasBgImage]="true" [class]="'pb-5'">
+</app-content-header>
+
+<mat-card>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center" [formGroup]="addBCMProcess">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Program" formControlName="BCMProgram" name="food" (selectionChange)="BindBCMProject($event)">
+                            <mat-option *ngFor="let stt of dataArray" [value]="stt.bcM_Program_ID">
+                                {{stt.bcM_Program_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Project" formControlName="BCMProject" name="food" (selectionChange)="BindBCMProcess($event)">
+                            <mat-option *ngFor="let st of projectList" [value]="st.id">
+                                {{st.bcM_Project_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="BCM Process" formControlName="BCMProcess" name="food">
+                            <mat-option *ngFor="let st of processList" [value]="st.id">
+                                {{st.bcM_Process_Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="BCMProcessName" placeholder="BCM Application Name" value="">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput formControlName="BCMProcessLocation" placeholder="BCM Application Location"
+                            value="">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <textarea matInput placeholder="Application Description"
+                            formControlName="BCMProcessDesc"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-card-header fxLayoutAlign="center">
+                <button mat-raised-button color="primary" class="m-1" (click)="addupdate()">
+                    <mat-spinner *ngIf="submitted" mode="indeterminate" style="margin:0 auto;" [diameter]="40"
+                        class="mat-spinner-color"></mat-spinner>
+                    <span *ngIf="!submitted"> {{buttonTitle}}</span>
+                </button>
+                <button mat-raised-button color="accent" class="m-1">Cancel</button>
+
+            </mat-card-header>
+        </form>
+    </mat-card-content>
+</mat-card>

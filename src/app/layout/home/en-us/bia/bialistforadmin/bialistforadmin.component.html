@@ -1,0 +1,111 @@
+<!-- <app-content-header [icon]="'card_membership'" [desc]="'BIA Program List '" [hideBreadcrumb]="true"
+  [hasBgImage]="true" [class]="'pb-5'"></app-content-header> -->
+  <mat-toolbar  fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+  <div fxLayout="row">
+    <div class="page-head">BIA Program List </div>
+    <!-- <button mat-icon-button routerLink="/en-us/businessStratigies/add">
+        <mat-icon>person_add</mat-icon>
+    </button> -->
+   
+</div>
+  <form class="user-search">
+    <mat-form-field class="user-search-input" *ngIf="showSearch">
+      <input matInput placeholder="Search user by name..." name="search">
+    </mat-form-field>
+  </form>
+
+</mat-toolbar>
+<div class="row" style="margin-bottom: 10px;">
+  <div class="col-md-9">
+
+  </div>
+  <div class="col-md-2">
+    <button mat-raised-button color="primary" *ngIf="statArray.length>0" (click)="ApproveReject()" class="m-1"> Submit
+    </button>
+
+  </div>
+  <div class="col-md-1">
+    <button mat-raised-button color="accent" (click)="exportexcel()" class="m-1"> Export To Excel
+    </button>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table  mat-table [dataSource]="dataSource" matSort class="common-table-style">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="biA_ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sr No.</th>
+      <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="biA_ID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.biA_ID}} </td>
+        </ng-container> -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="biA_NAME">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> BIA Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.biA_NAME}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="bcM_Program_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Program Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bcM_Program_Name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="bcM_Project_Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bcM_Project_Name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="bcM_Process_Name">
+      <th mat-header-cell *matHeaderCellDef> Process Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bcM_Process_Name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Approve">
+      <th mat-header-cell *matHeaderCellDef>Approve/Reject </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button (change)="getApproveReject($event,element)" value="28">Approve</mat-radio-button>
+          <mat-radio-button (change)="getApproveReject($event,element)" value="29">Reject</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="Action" >
+          <th mat-header-cell *matHeaderCellDef class="flex"> Action</th>
+
+          <td mat-cell *matCellDef="let element" class="flex">
+            <button mat-raised-button routerLink="/en-us/bia/update/{{element.biA_ID}}" color="primary" class="m-1"><mat-icon class="">edit</mat-icon></button>
+        </td>
+        </ng-container> -->
+    <ng-container matColumnDef="View">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="openDialogForView(element)" class="m-1" color="accent">
+          <mat-icon class="">visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" class="m-1" (click)="deleteBCMProgram(element.biA_ID)" *ngIf="RoleID!=3">
+          <mat-icon class="">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[50, 100, 200]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at https://angular.io/license -->

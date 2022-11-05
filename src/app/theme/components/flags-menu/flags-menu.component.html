@@ -1,0 +1,19 @@
+<button mat-icon-button [matMenuTriggerFor]="flagsMenu" #flagsMenuTrigger="matMenuTrigger">
+    <mat-icon>flag</mat-icon>
+</button>
+<!--<button mat-icon-button [matMenuTriggerFor]="flagsMenu" #flagsMenuTrigger="matMenuTrigger">
+    <img src="assets/img/flags/gb.svg" width="20" alt="english"> 
+</button>-->
+<mat-menu #flagsMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu flags">
+    <span (mouseleave)="flagsMenuTrigger.closeMenu()">  
+        <button mat-menu-item (click)="settings.rtl = false">
+            <img src="assets/img/flags/gb.svg"  width="20" alt="english"> 
+            English
+        </button>
+        <button mat-menu-item (click)="settings.rtl = true">
+            <img src="assets/img/flags/tr.svg" width="20" alt="german"> 
+            Arabic
+        </button>
+       
+    </span>
+</mat-menu>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title><span *ngIf="departmentId==0">Add</span><span *ngIf="departmentId>0">Edit</span> Department</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addUserForm" class="user-form">      
+        
+                <div >
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Name</mat-placeholder>
+                        <input matInput formControlName="departmentName" required>
+                        <mat-error *ngIf="addUserForm.controls.departmentName.errors?.required">Name is required</mat-error>
+                    </mat-form-field>
+                    </div>
+            
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" class="m-1" (click)="addUpdate()">
+        <mat-spinner *ngIf="isLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="40" class="mat-spinner-color"></mat-spinner>
+         <span *ngIf="!isLoading"> {{buttonTitle}}</span>
+       </button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+
+</div>

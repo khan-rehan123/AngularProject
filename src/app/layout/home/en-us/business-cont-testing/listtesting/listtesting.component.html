@@ -1,0 +1,24 @@
+ 
+<app-content-header
+icon="computer" 
+[desc]="'Business Contiuity TestingList'"
+[hideBreadcrumb]="true"
+[hasBgImage]="true" 
+[class]="'py-3'"></app-content-header>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button routerLink="/en-us/businessTesting/add">
+            <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="showSearch = !showSearch" class="mx-2">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <form class="user-search" >
+        <mat-form-field class="user-search-input" *ngIf="showSearch">
+            <input matInput placeholder="Search user by name..." name="search">
+        </mat-form-field>
+    </form>
+  
+</mat-toolbar>
+<p>list</p>

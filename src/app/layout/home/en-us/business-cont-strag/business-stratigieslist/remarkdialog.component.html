@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add Remarks</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Remarks</mat-label>
+    <textarea matInput  
+     placeholder="Comment" 
+     [(ngModel)]="remark"
+     
+     >
+  </textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="text-right">
+  <button mat-raised-button color="primary" class="m-1"  (click)="submit()" cdkFocusInitial>Ok</button>
+</div>

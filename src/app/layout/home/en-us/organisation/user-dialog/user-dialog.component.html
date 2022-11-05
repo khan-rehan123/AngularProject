@@ -1,0 +1,35 @@
+<h1 mat-dialog-title><span *ngIf="userid==0">Add</span><span *ngIf="userid>0">Edit</span> user</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addOrgForm" class="user-form">      
+        
+                <div >
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon>  Organization Name</mat-placeholder>
+                        <input matInput formControlName="orgName" required>
+                        <mat-error *ngIf="addOrgForm.controls.orgName.errors?.required">orgName is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon>Website</mat-placeholder>
+                        <input matInput formControlName="website" required>
+                        <mat-error *ngIf="addOrgForm.controls.website.errors?.required">website is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Contact Email</mat-placeholder>
+                        <input matInput formControlName="email" required>
+                        <mat-error *ngIf="addOrgForm.controls.email.errors?.required">email is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Phone Number</mat-placeholder>
+                        <input matInput formControlName="phone" required>
+                        <mat-error *ngIf="addOrgForm.controls.phone.errors?.required">phone is required</mat-error>
+                    </mat-form-field>
+                </div>
+            
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" (click)="addUpdate()" [disabled]="!addOrgForm.valid">
+        <mat-spinner *ngIf="isLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="40" class="mat-spinner-color"></mat-spinner> 
+        <span *ngIf="userid ==0 && !isLoading">Save</span><span *ngIf="userid>0  && !isLoading">Update</span></button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>
